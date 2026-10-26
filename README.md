@@ -8,7 +8,7 @@ Jostin Paul Valenzuela Arevalo.
 
 ## Propósito y estado
 
-El sistema permitirá registrar, listar, consultar, editar, eliminar y buscar equipos tecnológicos. Etapa 2: conexión MySQL y entidad Equipo implementadas; API e interfaz funcional pendientes.
+El sistema permite administrar equipos mediante una API REST NestJS con MySQL. Etapa 3: CRUD y validaciones implementados y probados; integración Vue pendiente.
 
 ## Tecnologías
 
@@ -72,7 +72,7 @@ Verificación etapa 2: base creada sin eliminar datos existentes, conexión Type
 
 ## Endpoints previstos
 
-Estas rutas todavía no están implementadas:
+Rutas implementadas. POST devuelve 201; consultas y PATCH, 200; DELETE, 204 sin cuerpo. Un ID inexistente devuelve 404, un cuerpo inválido 400 y un código duplicado 409.
 
 | Método | Ruta | Operación |
 | --- | --- | --- |
@@ -81,6 +81,10 @@ Estas rutas todavía no están implementadas:
 | POST | /equipos | Registrar |
 | PATCH | /equipos/:id | Actualizar |
 | DELETE | /equipos/:id | Eliminar |
+
+Los DTO validan campos, longitudes, estado y fecha YYYY-MM-DD real. Se recortan espacios de los textos. PATCH admite campos omitidos pero rechaza null en los obligatorios. ValidationPipe transforma el cuerpo a DTO y rechaza propiedades no declaradas mediante whitelist y forbidNonWhitelisted. ParseIntPipe convierte y valida el ID de la ruta. CORS permite el origen configurado para Vue.
+
+Para cargar cinco equipos coherentes sin sobrescribirlos, con la API iniciada ejecutar desde backend: npm.cmd run seed. Para probar contra MySQL real: npm.cmd run test:api. La prueba crea un registro temporal y lo elimina. Se ejecutaron 26 comprobaciones correctas: CRUD, valores inválidos, propiedades extra, duplicados, CORS, IDs inválidos e inexistentes.
 
 ## Verificación
 
