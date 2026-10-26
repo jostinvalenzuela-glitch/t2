@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QueryFailedError, Repository } from 'typeorm';
 import { Equipo } from './equipo.entity';
@@ -7,13 +11,18 @@ import { UpdateEquipoDto } from './dto/update-equipo.dto';
 
 @Injectable()
 export class EquiposService {
-  constructor(@InjectRepository(Equipo) private readonly repository: Repository<Equipo>) {}
+  constructor(
+    @InjectRepository(Equipo) private readonly repository: Repository<Equipo>,
+  ) {}
 
-  findAll() { return this.repository.find({ order: { id: 'ASC' } }); }
+  findAll() {
+    return this.repository.find({ order: { id: 'ASC' } });
+  }
 
   async findOne(id: number) {
     const equipo = await this.repository.findOneBy({ id });
-    if (!equipo) throw new NotFoundException(`No existe el equipo con ID ${id}`);
+    if (!equipo)
+      throw new NotFoundException(`No existe el equipo con ID ${id}`);
     return equipo;
   }
 
@@ -36,8 +45,13 @@ export class EquiposService {
     try {
       return await this.repository.save(equipo);
     } catch (error) {
-      if (error instanceof QueryFailedError && (error.driverError as { code?: string }).code === 'ER_DUP_ENTRY') {
-        throw new ConflictException('El código de inventario ya está registrado');
+      if (
+        error instanceof QueryFailedError &&
+        (error.driverError as { code?: string }).code === 'ER_DUP_ENTRY'
+      ) {
+        throw new ConflictException(
+          'El código de inventario ya está registrado',
+        );
       }
       throw error;
     }

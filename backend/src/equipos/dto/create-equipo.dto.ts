@@ -1,8 +1,17 @@
 import { Transform } from 'class-transformer';
-import { IsDateString, IsEnum, IsOptional, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsOptional,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { EstadoEquipo } from '../equipo.entity';
 
-const trim = ({ value }: { value: unknown }) => typeof value === 'string' ? value.trim() : value;
+const trim = ({ value }: { value: unknown }) =>
+  typeof value === 'string' ? value.trim() : value;
 
 export class CreateEquipoDto {
   @Transform(trim)
@@ -44,8 +53,13 @@ export class CreateEquipoDto {
   @IsEnum(EstadoEquipo)
   estado: EstadoEquipo;
 
-  @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'fechaAdquisicion debe usar YYYY-MM-DD' })
-  @IsDateString({ strict: true }, { message: 'fechaAdquisicion debe ser una fecha válida' })
+  @Matches(/^\d{4}-\d{2}-\d{2}$/, {
+    message: 'fechaAdquisicion debe usar YYYY-MM-DD',
+  })
+  @IsDateString(
+    { strict: true },
+    { message: 'fechaAdquisicion debe ser una fecha válida' },
+  )
   fechaAdquisicion: string;
 
   @IsOptional()

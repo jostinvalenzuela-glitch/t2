@@ -7,4 +7,7 @@ async function bootstrap() {
   setup(app);
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+bootstrap().catch((error: unknown) => {
+  console.error('No se pudo iniciar el backend:', error);
+  process.exitCode = 1;
+});
