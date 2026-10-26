@@ -180,4 +180,5 @@ Apoyo recibido: interpretación de la pauta, explicación de arquitectura y coma
 
 El estudiante proporcionó sus datos de autoría, autorizó el acceso a GitHub, ejecutó pasos de configuración y recuperación de acceso a MySQL y solicitó mantener documentación y commits por etapas. La revisión y adaptación personal del código generado debe completarse antes de entregar; todavía no se atribuye al estudiante una revisión técnica no confirmada.
 
-El estudiante debe estudiar, revisar y poder explicar o modificar el código entregado. La [guía de estudio detallada](docs/GUIA_ESTUDIO.md) recorre los archivos reales, explica el flujo de datos e incluye ejercicios y un simulacro de interrogación. Leerla no sustituye ejecutar y revisar personalmente el código.
+El estudiante debe estudiar, revisar y poder explicar o modificar el código entregado.
+
