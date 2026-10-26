@@ -8,7 +8,7 @@ Jostin Paul Valenzuela Arevalo.
 
 ## Propósito y estado
 
-El sistema permitirá registrar, listar, consultar, editar, eliminar y buscar equipos tecnológicos. Esta primera etapa contiene las aplicaciones iniciales de Vue y NestJS. La API de equipos y la persistencia todavía no están implementadas.
+El sistema permitirá registrar, listar, consultar, editar, eliminar y buscar equipos tecnológicos. Etapa 2: conexión MySQL y entidad Equipo implementadas; API e interfaz funcional pendientes.
 
 ## Tecnologías
 
@@ -66,7 +66,9 @@ Flujo previsto: usuario → Vue → HTTP/JSON → controlador NestJS → servici
 
 ## Base de datos y variables
 
-Pendiente de implementación. Se documentará la creación de inventario_tecnologico y se añadirán archivos .env.example sin contraseñas reales. Los archivos .env locales están excluidos del repositorio.
+Copiar backend/.env.example a backend/.env y completar DB_HOST, DB_PORT, DB_USERNAME y DB_PASSWORD. DB_DATABASE es inventario_tecnologico. Desde backend ejecutar npm.cmd run db:create (el usuario necesita permiso CREATE) y luego npm.cmd run start:dev. TypeORM crea la tabla equipos desde equipo.entity.ts. DB_SYNCHRONIZE=true se usa solo para desarrollo local; en producción se requieren migraciones. Nunca publicar .env. PORT define el puerto de la API y FRONTEND_ORIGIN el origen permitido para Vue.
+
+Verificación etapa 2: base creada sin eliminar datos existentes, conexión TypeORM establecida, tabla equipos y columnas comprobadas con SHOW TABLES y DESCRIBE. El código de inventario es único para evitar identificar dos equipos con el mismo código.
 
 ## Endpoints previstos
 
