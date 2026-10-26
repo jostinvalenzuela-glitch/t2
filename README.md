@@ -8,7 +8,7 @@ Jostin Paul Valenzuela Arevalo.
 
 ## Propósito y estado
 
-El sistema permite administrar equipos mediante una API REST NestJS con MySQL. Etapa 3: CRUD y validaciones implementados y probados; integración Vue pendiente.
+Aplicación cliente-servidor para registrar, listar, consultar, editar, eliminar y buscar equipos tecnológicos. Vue consume la API NestJS con HTTP y JSON; TypeORM persiste los datos en MySQL. Etapa 4: interfaz integrada y compilada.
 
 ## Tecnologías
 
@@ -16,7 +16,7 @@ El sistema permite administrar equipos mediante una API REST NestJS con MySQL. E
 - Backend: NestJS 11 y TypeScript.
 - Dependencias: npm, con versiones reproducibles en package-lock.json.
 - Control de versiones: Git y GitHub.
-- Próximas etapas: MySQL, TypeORM, class-validator y class-transformer.
+- Persistencia: MySQL y TypeORM. Validación: class-validator y class-transformer.
 
 ## Requisitos e instalación
 
@@ -52,6 +52,10 @@ npm.cmd run dev
 ```
 
 Abrir la URL indicada por Vite, habitualmente http://localhost:5173. Ctrl+C detiene cada proceso.
+
+El frontend usa VITE_API_URL, con valor predeterminado http://localhost:3000. Para cambiarlo, copiar frontend/.env.example a frontend/.env, editarlo y reiniciar Vite. Las variables VITE_ son públicas: nunca contienen contraseñas. Vite usa puerto fijo 5173 para mantener coherencia con CORS.
+
+La pantalla muestra resumen y listado. La búsqueda combina nombre, código, tipo, ubicación o estado, sin distinguir mayúsculas ni tildes; puede combinarse con el filtro de estado. Ver consulta el detalle por ID. Registrar y Editar abren un formulario con validaciones HTML y errores de API. Eliminar solicita confirmación. Las operaciones recargan la lista y muestran su resultado. También hay estados de carga, lista vacía y fallo de comunicación con botón Reintentar.
 
 ## Estructura y arquitectura
 
